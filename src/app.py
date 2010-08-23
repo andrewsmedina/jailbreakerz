@@ -10,7 +10,11 @@ class Background(cocos.layer.Layer):
 	def load_sprites(self):
 		self.building = cocos.sprite.Sprite( 'imgs/predio.png' )
 		self.building.position = 120,200
-		self.add( self.building)
+		self.add( self.building )
+
+		self.fuu = cocos.sprite.Sprite( 'imgs/boneco.png' )
+		self.fuu.position = 200,240
+		self.add( self.fuu )
 
 		
 if __name__ == "__main__":
