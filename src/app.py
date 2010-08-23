@@ -16,6 +16,8 @@ class Background(cocos.layer.Layer):
 		self.fuu.position = 200,240
 		self.add( self.fuu )
 
+		action = cocos.actions.interval_actions.JumpBy( (200,0), height=100, jumps=5, duration=6 )
+		self.fuu.do( action )
 		
 if __name__ == "__main__":
 	cocos.director.director.init()
