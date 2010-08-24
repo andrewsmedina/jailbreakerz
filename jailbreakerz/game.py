@@ -1,9 +1,5 @@
 import cocos
-
-LEFT_KEY = 65361
-UP_KEY = 65362
-DOWN_KEY = 65364
-RIGHT_KEY = 65363
+import pyglet
 
 class Game(cocos.layer.Layer):
 
@@ -28,11 +24,13 @@ class Catcher(cocos.layer.Layer):
     
     is_event_handler = True
     
+    MOVEMENT_RATE = 100  # Constant used to move sprite
+    
     def __init__(self, *args, **kwargs):
         super(Catcher, self).__init__()
         self.catcher = cocos.sprite.Sprite('media/imgs/catcher.png')
         self.catcher.position = 300,100
-        self.add(self.catcher, z=1)
+        self.add(self.catcher)
         
     def on_key_press(self, key, modifiers):
         """
@@ -40,10 +38,10 @@ class Catcher(cocos.layer.Layer):
         
         @param key: int
         """
-        if key == LEFT_KEY:
-            self.catcher.position = self.catcher.position[0] - 50, self.catcher.position[1]
-        elif key == RIGHT_KEY:
-            self.catcher.position = self.catcher.position[0] + 50, self.catcher.position[1]            
+        if key == pyglet.window.key.LEFT:
+            self.catcher.position = self.catcher.position[0] - self.MOVEMENT_RATE, self.catcher.position[1]
+        elif key == pyglet.window.key.RIGHT:
+            self.catcher.position = self.catcher.position[0] + self.MOVEMENT_RATE, self.catcher.position[1]            
 
 
 if __name__ == '__main__':
