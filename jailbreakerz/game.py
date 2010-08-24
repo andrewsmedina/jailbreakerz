@@ -3,19 +3,29 @@ import cocos
 
 class Game(cocos.layer.Layer):
 
-	def __init__(self):
-		super(Game, self).__init__()
-		self.load_sprites()
+    def __init__(self):
+        super(Game, self).__init__()
+        self.load_sprites()
 
-	def load_sprites(self):
-		self.prison = cocos.sprite.Sprite('media/imgs/prison.png')
-		self.prison.position = 100,170
-		self.add(self.prison)
+    def load_sprites(self):
+        self.prison = cocos.sprite.Sprite('media/imgs/prison.png')
+        self.prison.position = 100,170
+        self.add(self.prison)
 
-		self.fuu = cocos.sprite.Sprite('media/imgs/tall_thief.png')
-		self.fuu.position = 200,240
-		self.add(self.fuu)
+        self.thief = cocos.sprite.Sprite('media/imgs/tall_thief.png')
+        self.thief.position = 250,440
+        self.add(self.thief)
 
-		action = cocos.actions.interval_actions.JumpBy((200,0), height=100, jumps=5, duration=6)
-		self.fuu.do(action)
+        self.catcher = cocos.sprite.Sprite('media/imgs/catcher.png')
+        self.catcher.position = 300,100
+        self.add(self.catcher)
 
+        self.kombi = cocos.sprite.Sprite('media/imgs/kombi.png')
+        self.kombi.position = 750, 120
+        self.add(self.kombi)
+
+if __name__ == '__main__':
+    cocos.director.director.init(resizable=False, width=800, height=600)
+
+    scene = cocos.scene.Scene(Game())
+    cocos.director.director.run(scene)
