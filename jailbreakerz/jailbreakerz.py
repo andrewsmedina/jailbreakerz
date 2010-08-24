@@ -68,7 +68,7 @@ class MainMenu(Menu):
         pyglet.app.exit()
 
 if __name__ == "__main__":
-    font_path = os.path.join( os.path.dirname(__file__), 'media/font')
+    font_path = os.path.join(os.path.dirname(__file__), 'media/font')
     font.add_directory(font_path)
     
     
