@@ -1,3 +1,5 @@
+import os
+
 from cocos.director import director
 from cocos.layer import Layer
 from cocos.scene import Scene
@@ -66,7 +68,8 @@ class MainMenu(Menu):
         pyglet.app.exit()
 
 if __name__ == "__main__":
-    font.add_directory('media/font')
+    font_path = os.path.join( os.path.dirname(__file__), 'media/font')
+    font.add_directory(font_path)
     
     
     director.init(resizable=False, width=800, height=600)
