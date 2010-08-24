@@ -1,3 +1,4 @@
+import random
 import cocos
 import pyglet
 
@@ -11,10 +12,6 @@ class Game(cocos.layer.Layer):
         self.prison = cocos.sprite.Sprite('media/imgs/prison.png')
         self.prison.position = 100,170
         self.add(self.prison)
-
-        self.thief = cocos.sprite.Sprite('media/imgs/tall_thief.png')
-        self.thief.position = 250,440
-        self.add(self.thief)
 
         self.kombi = cocos.sprite.Sprite('media/imgs/kombi.png')
         self.kombi.position = 750, 120
@@ -44,8 +41,19 @@ class Catcher(cocos.layer.Layer):
             self.catcher.position = self.catcher.position[0] + self.MOVEMENT_RATE, self.catcher.position[1]            
 
 
+class Thief(cocos.layer.Layer):
+    """
+    Thief that flies.
+    """
+    def __init__(self, *args, **kwargs):
+        super(Thief, self).__init__()
+        thief_sprites = ['media/imgs/tall_thief.png', 'media/imgs/small_thief.png', 'media/imgs/fat_thief.png']
+        self.thief = cocos.sprite.Sprite(random.sample(thief_sprites, 1)[0])  # Create a random thief
+        self.thief.position = 250,440
+        self.add(self.thief)
+
 if __name__ == '__main__':
     cocos.director.director.init(resizable=False, width=800, height=600)
-
-    scene = cocos.scene.Scene(Game(), Catcher())
+    # XXX THIS CODE IS NOT BEING USED
+    scene = cocos.scene.Scene(Game(), Catcher(), Thief())
     cocos.director.director.run(scene)
