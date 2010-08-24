@@ -58,7 +58,7 @@ class MainMenu(Menu):
     def on_start(self):
         game_scene = Scene(game.Game(), game.Catcher(), \
                             game.FallingThief())
-        director.push(game_scene)
+        director.push( FlipAngular3DTransition(game_scene, 1.5)  )
 
     def on_credits(self):
         scene = Scene(Background())
