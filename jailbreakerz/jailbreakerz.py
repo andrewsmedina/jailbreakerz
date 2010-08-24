@@ -11,7 +11,7 @@ import pyglet
 class MainMenu(Menu):
 
     def __init__(self):
-        super( MainMenu, self).__init__('Fire') 
+        super( MainMenu, self).__init__('Jail Breakerz') 
 
         self.font_title['font_size'] = 72
         self.font_item['font_size'] = 32

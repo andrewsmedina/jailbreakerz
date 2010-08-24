@@ -1,19 +1,21 @@
 # TODO
-main sprite (bombeiros)
-main sprite actions
-main sprite animation
 
-victims sprite
-victims animation
+- Sprites:
+	- Thieves falling down (fats, tall, thin, etc)
+	- Thieves on the ground holding the trampoline
+	- The prison
+	- An old kombi
 
-ambulance sprite
-ambulance animation
+- Sounds
 
-colision
-score
+- Animations
+
+- Colision
+
+- Score
 
 # IN PROGRESS
 
+- Main Menu - andrewsmedina + osantana
 
 # DONE
-main menu - andrewsmedina
