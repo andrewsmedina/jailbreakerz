@@ -11,7 +11,7 @@ import pyglet
 class Background(Layer):
     def __init__(self):
         super(Background, self).__init__()
-        self.img = pyglet.resource.image('media/wall_bg.jpg')
+        self.img = pyglet.resource.image('media/imgs/wall_bg.jpg')
 
     def draw(self):
         glPushMatrix()
