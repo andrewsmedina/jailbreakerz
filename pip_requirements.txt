@@ -1,0 +1,2 @@
+cocos2d==0.4rc
+pyglet>=1.1.4
