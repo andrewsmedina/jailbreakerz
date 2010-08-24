@@ -1,5 +1,9 @@
 import cocos
 
+LEFT_KEY = 65361
+UP_KEY = 65362
+DOWN_KEY = 65364
+RIGHT_KEY = 65363
 
 class Game(cocos.layer.Layer):
 
@@ -16,16 +20,34 @@ class Game(cocos.layer.Layer):
         self.thief.position = 250,440
         self.add(self.thief)
 
-        self.catcher = cocos.sprite.Sprite('media/imgs/catcher.png')
-        self.catcher.position = 300,100
-        self.add(self.catcher)
-
         self.kombi = cocos.sprite.Sprite('media/imgs/kombi.png')
         self.kombi.position = 750, 120
         self.add(self.kombi)
 
+class Catcher(cocos.layer.Layer):
+    
+    is_event_handler = True
+    
+    def __init__(self, *args, **kwargs):
+        super(Catcher, self).__init__()
+        self.catcher = cocos.sprite.Sprite('media/imgs/catcher.png')
+        self.catcher.position = 300,100
+        self.add(self.catcher, z=1)
+        
+    def on_key_press(self, key, modifiers):
+        """
+        Catcher movement
+        
+        @param key: int
+        """
+        if key == LEFT_KEY:
+            self.catcher.position = self.catcher.position[0] - 50, self.catcher.position[1]
+        elif key == RIGHT_KEY:
+            self.catcher.position = self.catcher.position[0] + 50, self.catcher.position[1]            
+
+
 if __name__ == '__main__':
     cocos.director.director.init(resizable=False, width=800, height=600)
 
-    scene = cocos.scene.Scene(Game())
+    scene = cocos.scene.Scene(Game(), Catcher())
     cocos.director.director.run(scene)
