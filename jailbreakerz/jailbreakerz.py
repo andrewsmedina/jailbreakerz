@@ -7,6 +7,7 @@ from cocos.sprite import *
 from cocos.menu import *
 from cocos.text import *
 import pyglet
+from pyglet import font
 
 import game
 
@@ -61,6 +62,9 @@ class MainMenu(Menu):
         pyglet.app.exit()
 
 if __name__ == "__main__":
+    font.add_directory('media/font')
+    
+    
     director.init(resizable=False, width=800, height=600)
 
     scene = Scene(Background())
