@@ -56,7 +56,7 @@ class MainMenu(Menu):
         self.create_menu(items)
 
     def on_start(self):
-        game_scene = Scene(game.Game())
+        game_scene = Scene(game.Game(), game.Catcher())
         director.push(game_scene)
 
     def on_credits(self):
