@@ -8,6 +8,8 @@ from cocos.menu import *
 from cocos.text import *
 import pyglet
 
+import game
+
 class Background(Layer):
     def __init__(self):
         super(Background, self).__init__()
@@ -49,7 +51,8 @@ class MainMenu(Menu):
         self.create_menu(items)
 
     def on_start(self):
-        pass
+        game_scene = Scene(game.Game())
+        director.replace(game_scene)
 
     def on_credits(self):
         pass

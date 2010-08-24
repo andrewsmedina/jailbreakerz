@@ -9,7 +9,7 @@ class Game(cocos.layer.Layer):
 
 	def load_sprites(self):
 		self.prison = cocos.sprite.Sprite('media/imgs/prison.png')
-		self.prison.position = 200,160
+		self.prison.position = 100,170
 		self.add(self.prison)
 
 		self.fuu = cocos.sprite.Sprite('media/imgs/tall_thief.png')
