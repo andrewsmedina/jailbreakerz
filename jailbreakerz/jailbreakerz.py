@@ -6,9 +6,11 @@ from cocos.actions import *
 from cocos.sprite import *
 from cocos.menu import *
 from cocos.text import *
-import pyglet
 from pyglet import font
 
+import pyglet
+
+import credits
 import game
 
 class Background(Layer):
@@ -53,10 +55,12 @@ class MainMenu(Menu):
 
     def on_start(self):
         game_scene = Scene(game.Game())
-        director.replace(game_scene)
+        director.push(game_scene)
 
     def on_credits(self):
-        pass
+        scene = Scene(Background())
+        scene.add(credits.Credits())
+        director.push(scene)
 
     def on_quit(self):
         pyglet.app.exit()
