@@ -8,9 +8,9 @@ class Background(cocos.layer.Layer):
 		self.load_sprites()
 
 	def load_sprites(self):
-		self.building = cocos.sprite.Sprite( 'imgs/predio.png' )
-		self.building.position = 120,200
-		self.add( self.building )
+		self.prison = cocos.sprite.Sprite( 'imgs/prison.png' )
+		self.prison.position = 200,160
+		self.add( self.prison )
 
 		self.fuu = cocos.sprite.Sprite( 'imgs/boneco.png' )
 		self.fuu.position = 200,240
