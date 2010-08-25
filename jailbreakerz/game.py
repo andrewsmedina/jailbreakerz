@@ -8,6 +8,7 @@ from cocos.sprite import *
 from cocos.menu import *
 from cocos.text import *
 from pyglet import font
+from actions import *
 
 import pyglet
 
@@ -30,13 +31,15 @@ class FallingThief(Layer):
 
     def __init__(self, *args, **kwargs):
         super(FallingThief, self).__init__()
+
         self.thief = Sprite('media/imgs/tall_thief.png')
         self.thief.position = 100, 190
         self.add(self.thief)
         self.fall()
 
     def fall(self):
-        action = JumpBy((500,0), height=100, jumps=10, duration=7)
+        action = CustomJump((500,0), 100, 10, 7)
+
         self.thief.do(action)
 
 class Catcher(Layer):
@@ -52,18 +55,12 @@ class Catcher(Layer):
         self.add(self.catcher)
 
     def on_key_press(self, key, modifiers):
-        """
-        Catcher movement
-        @param key: int
-        """
         if key == pyglet.window.key.LEFT:
             self.catcher.position = self.catcher.position[0] - self.MOVEMENT_RATE, self.catcher.position[1]
         elif key == pyglet.window.key.RIGHT:
             self.catcher.position = self.catcher.position[0] + self.MOVEMENT_RATE, self.catcher.position[1]
 
-
 if __name__ == '__main__':
     director.init(resizable=False, width=800, height=600)
-
-    scene = Scene(Game(), Catcher(), FallingThief())
+    scene = Scene(Game(), Catcher(), FallingThief() )
     director.run(scene)
