@@ -56,8 +56,9 @@ class MainMenu(Menu):
         self.create_menu(items)
 
     def on_start(self):
-        game_scene = Scene(game.Game(), game.Catcher(), game.Thief())
-        director.push(game_scene)
+        game_scene = Scene(game.Game(), game.Catcher(), \
+                            game.FallingThief())
+        director.push( FlipAngular3DTransition(game_scene, 1.5)  )
 
     def on_credits(self):
         scene = Scene(Background())
@@ -68,10 +69,9 @@ class MainMenu(Menu):
         pyglet.app.exit()
 
 if __name__ == "__main__":
-    font_path = os.path.join(os.path.dirname(__file__), 'media/font')
+    font_path = os.path.join( os.path.dirname(__file__), 'media/font')
     font.add_directory(font_path)
-    
-    
+
     director.init(resizable=False, width=800, height=600)
 
     scene = Scene(Background())
