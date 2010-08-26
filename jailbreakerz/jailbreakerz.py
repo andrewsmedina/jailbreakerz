@@ -63,8 +63,7 @@ class MainMenu(Menu):
         sound.player.play()    
 
     def on_start(self):
-        game_scene = Scene(game.Game(), game.Catcher(), \
-                            game.FallingThief())
+        game_scene = Scene(game.Game(), game.Catcher())
         
         game_scene.add(ScoreLayer(), z=2)
         

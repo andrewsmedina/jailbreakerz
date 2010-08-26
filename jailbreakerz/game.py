@@ -23,6 +23,13 @@ class Game(Layer):
         self.load_sprites()
         
         score.score_points = 100
+        
+        # THIEF BUILDER
+        # TODO : And how we gonna do in hard levels?
+        self.schedule_interval(self.thief_builder, 2)
+
+    def thief_builder(self, dt):
+        self.add(FallingThief())
 
     def load_sprites(self):
         self.prison = Sprite('media/imgs/prison.png')
@@ -32,6 +39,7 @@ class Game(Layer):
         self.kombi = Sprite('media/imgs/kombi.png')
         self.kombi.position = 700,90
         self.add(self.kombi)
+
 
 class FallingThief(Layer):
 
@@ -48,6 +56,7 @@ class FallingThief(Layer):
         action = CustomJump((500,0), 100, 10, 7)
         self.thief.do(action)
         pyglet.resource.media('media/sounds/yupi.mp3').play()
+
 
 class Catcher(Layer):
 

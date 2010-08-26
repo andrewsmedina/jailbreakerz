@@ -21,7 +21,6 @@ class CustomJump(IntervalAction):
         y = int(y+self.delta[1] * t)
         x = self.delta[0] * t
         self.target.position = self.start_position + Point2(x,y)
-        print 'updating..'
 
     def __reversed__(self):
         return CustomJump( (-self.position[0],-self.position[1]), self.height, self.jumps, self.duration)
