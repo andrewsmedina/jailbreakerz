@@ -10,6 +10,8 @@ from cocos.menu import *
 from cocos.text import *
 from pyglet import font
 
+from score import ScoreLayer
+
 import pyglet
 
 import sound
@@ -63,6 +65,9 @@ class MainMenu(Menu):
     def on_start(self):
         game_scene = Scene(game.Game(), game.Catcher(), \
                             game.FallingThief())
+        
+        game_scene.add(ScoreLayer(), z=2)
+        
         director.push( FlipAngular3DTransition(game_scene, 1.5)  )
 
     def on_credits(self):

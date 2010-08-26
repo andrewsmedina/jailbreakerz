@@ -1,5 +1,3 @@
-import random
-import cocos
 from cocos.sprite import *
 from cocos.director import director
 from cocos.layer import Layer
@@ -10,14 +8,21 @@ from cocos.sprite import *
 from cocos.menu import *
 from cocos.text import *
 from pyglet import font
+
 from actions import *
+
+import score
 import pyglet
+import random
+import cocos
 
 class Game(Layer):
 
     def __init__(self):
         super(Game, self).__init__()
         self.load_sprites()
+        
+        score.score_points = 100
 
     def load_sprites(self):
         self.prison = Sprite('media/imgs/prison.png')
