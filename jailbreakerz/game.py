@@ -30,7 +30,7 @@ class Game(Layer):
         self.add(self.prison)
 
         self.kombi = Sprite('media/imgs/kombi.png')
-        self.kombi.position = 700,90
+        self.kombi.position = 790,90
         self.add(self.kombi)
 
 class FallingThief(Layer):
@@ -50,10 +50,10 @@ class FallingThief(Layer):
         pyglet.resource.media('media/sounds/yupi.wav').play()
 
 class Catcher(Layer):
-
+ 
     is_event_handler = True
 
-    MOVEMENT_RATE = 50  # Constant used to move sprite
+    MOVEMENT_RATE = 100  # Constant used to move sprite
 
     def __init__(self, *args, **kwargs):
         super(Catcher, self).__init__()
@@ -62,9 +62,9 @@ class Catcher(Layer):
         self.add(self.catcher)
 
     def on_key_press(self, key, modifiers):
-        if key == pyglet.window.key.LEFT:
+        if key == pyglet.window.key.LEFT and self.catcher.position[0] > 300:
             self.catcher.position = self.catcher.position[0] - self.MOVEMENT_RATE, self.catcher.position[1]
-        elif key == pyglet.window.key.RIGHT:
+        elif key == pyglet.window.key.RIGHT and self.catcher.position[0] < 500:
             self.catcher.position = self.catcher.position[0] + self.MOVEMENT_RATE, self.catcher.position[1]
 
 if __name__ == '__main__':
