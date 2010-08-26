@@ -12,6 +12,7 @@ from pyglet import font
 
 import pyglet
 
+import sound
 import credits
 import game
 
@@ -55,9 +56,9 @@ class MainMenu(Menu):
 
         self.create_menu(items)
         
-        sound = pyglet.resource.media('media/sounds/menu.wav')
-        sound.play()
-    
+        sound.player.queue(pyglet.resource.media('media/sounds/fundogame.aif'))
+        sound.player.eos_action = 'loop'
+        sound.player.play()    
 
     def on_start(self):
         game_scene = Scene(game.Game(), game.Catcher(), \
