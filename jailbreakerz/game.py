@@ -41,8 +41,8 @@ class FallingThief(Layer):
 
     def fall(self):
         action = CustomJump((500,0), 100, 10, 7)
-
         self.thief.do(action)
+        pyglet.resource.media('media/sounds/yupi.wav').play()
 
 class Catcher(Layer):
 
