@@ -30,7 +30,7 @@ class Game(Layer):
         self.add(self.prison)
 
         self.kombi = Sprite('media/imgs/kombi.png')
-        self.kombi.position = 750,120
+        self.kombi.position = 700,90
         self.add(self.kombi)
 
 class FallingThief(Layer):
