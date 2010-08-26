@@ -54,6 +54,10 @@ class MainMenu(Menu):
         items.append(MenuItem('QUIT', self.on_quit))
 
         self.create_menu(items)
+        
+        sound = pyglet.resource.media('media/sounds/menu.wav')
+        sound.play()
+    
 
     def on_start(self):
         game_scene = Scene(game.Game(), game.Catcher(), \
