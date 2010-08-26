@@ -58,7 +58,7 @@ class MainMenu(Menu):
 
         self.create_menu(items)
         
-        sound.player.queue(pyglet.resource.media('media/sounds/fundogame.aif'))
+        sound.player.queue(pyglet.resource.media('media/sounds/menu.mp3'))
         sound.player.eos_action = 'loop'
         sound.player.play()    
 
