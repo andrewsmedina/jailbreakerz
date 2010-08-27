@@ -57,9 +57,9 @@ class CustomJump(IntervalAction):
     def done(self):
         return self._elapsed >= self.duration
 
-    def collide((thief_x, thief_y), (catcher_x, catcher_y)):
-        print 'Thief pos: ', thief_x, thief_y
-        print 'Catcherpos: ', catcher_x, catcher_y
+    def collide(self, thief_pos, catcher_pos):
+        print 'Thief pos: ', thief_pos
+        print 'Catcherpos: ', catcher_pos
         return True
 
 class CustomMove(Move):
