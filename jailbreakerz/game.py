@@ -65,6 +65,7 @@ class FallingThief(Layer):
         
         self.thief_type = random.choice(thiefs.items())
         self.thief = Sprite(self.thief_type[1])
+        self.thief.alive = True
         self.thief.position = 100, 190
         self.add(self.thief)
         self.fall()

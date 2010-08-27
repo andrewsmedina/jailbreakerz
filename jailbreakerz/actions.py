@@ -31,11 +31,18 @@ class CustomJump(IntervalAction):
         self.delta = Vector2(*self.position)
 
     def update(self, t):
-        y = self.height * abs( math.sin( t * math.pi * self.jumps ) )
-        y = int(y+self.delta[1] * t)
-        x = self.delta[0] * t
-        self.target.position = self.start_position + Point2(x,y)
-        print self.target.position, ':', director.scene.catcher.position
+
+        self.target.alive = self.collide( self.target.position, \
+                                director.scene.catcher.position )
+
+        if self.target.alive:
+            y = self.height * abs( math.sin( t * math.pi * self.jumps ) )
+            y = int(y+self.delta[1] * t)
+            x = self.delta[0] * t
+            self.target.position = self.start_position + Point2(x,y)
+
+        else:
+            self.target_position = self.target_position[0], self.target_position[1]-10
 
     def __reversed__(self):
         return CustomJump( (-self.position[0],-self.position[1]), self.height, self.jumps, self.duration)
@@ -49,6 +56,11 @@ class CustomJump(IntervalAction):
 
     def done(self):
         return self._elapsed >= self.duration
+
+    def collide((thief_x, thief_y), (catcher_x, catcher_y)):
+        print 'Thief pos: ', thief_x, thief_y
+        print 'Catcherpos: ', catcher_x, catcher_y
+        return True
 
 class CustomMove(Move):
 
