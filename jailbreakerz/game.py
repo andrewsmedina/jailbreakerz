@@ -33,7 +33,7 @@ class Game(Scene):
         self.keys = key.KeyStateHandler()
         director.window.push_handlers(self.keys)
 
-        self.schedule_interval(self.thiefs_builder, 10)
+        self.schedule_interval(self.thiefs_builder, 1)
 
     def thiefs_builder(self, dt):
         self.add(FallingThief())
@@ -63,7 +63,7 @@ class FallingThief(Layer):
                     'small' : 'media/imgs/small_thief.png', \
                     'fat' : 'media/imgs/fat_thief.png'}
         
-        self.thief_type = random.choice(thiefs)
+        self.thief_type = random.choice(thiefs.items())
         self.thief = Sprite(self.thief_type[1])
         self.thief.position = 100, 190
         self.add(self.thief)

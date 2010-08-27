@@ -10,21 +10,21 @@ class CustomJump(IntervalAction):
 
         if thief_type == 'fat':
             self.position = (500, 0)
-            self.height = 100
+            self.height = 50
             self.duration = 10
-            self.jumps = 7
+            self.jumps = 4
 
         elif thief_type == 'small':
             self.position = (500, 0)
-            self.height = 100
-            self.duration = 10
-            self.jumps = 7
+            self.height = 200
+            self.duration = 5
+            self.jumps = 2
 
         elif thief_type == 'tall':
             self.position = (500, 0)
             self.height = 100
-            self.duration = 10
-            self.jumps = 7
+            self.duration = 15
+            self.jumps = 3
 
     def start( self ):
         self.start_position = self.target.position
