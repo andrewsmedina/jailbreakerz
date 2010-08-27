@@ -29,7 +29,6 @@ class Background(Layer):
         self.img.blit(0,0)
         glPopMatrix()
 
-
 class MainMenu(Menu):
 
     def __init__(self):
@@ -57,17 +56,15 @@ class MainMenu(Menu):
         items.append(MenuItem('QUIT', self.on_quit))
 
         self.create_menu(items)
-        
+
         sound.player.queue(pyglet.resource.media('media/sounds/fundogame.mp3'))
         sound.player.eos_action = 'loop'
-        sound.player.play()    
+        sound.player.play()
 
     def on_start(self):
-        game_scene = Scene(game.Game(), game.Catcher())
-        
+        game_scene = game.Game()
         game_scene.add(ScoreLayer(), z=2)
-        
-        director.push( FlipAngular3DTransition(game_scene, 1.5)  )
+        director.push( game_scene  )
 
     def on_credits(self):
         scene = Scene(Background())

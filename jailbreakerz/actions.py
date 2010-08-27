@@ -1,6 +1,7 @@
 from cocos.euclid import *
 from cocos.actions import *
 from cocos.director import director
+from pyglet.window import key
 import math
 
 class CustomJump(IntervalAction):
@@ -35,4 +36,15 @@ class CustomJump(IntervalAction):
     def done(self):
         return self._elapsed >= self.duration
 
+class CustomMove(Move):
 
+    def step(self, dt):
+        keys = director.scene.keys
+        catcher = director.scene.catcher
+        if keys[key.LEFT] and catcher.position[0] > 300: 
+            catcher.position = (catcher.position[0] - catcher.mov_rate, \
+                                    catcher.position[1])
+
+        elif keys[key.RIGHT] and catcher.position[0] < 500:
+            catcher.position = (catcher.position[0] + catcher.mov_rate, \
+                                    catcher.position[1])
