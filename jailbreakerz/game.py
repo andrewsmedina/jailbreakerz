@@ -59,14 +59,18 @@ class FallingThief(Layer):
     def __init__(self, *args, **kwargs):
         super(FallingThief, self).__init__()
 
-        thief_sprites = ['media/imgs/tall_thief.png', 'media/imgs/small_thief.png', 'media/imgs/fat_thief.png']
-        self.thief = Sprite(random.sample(thief_sprites, 1)[0])
+        thiefs = {'tall': 'media/imgs/tall_thief.png', \
+                    'small' : 'media/imgs/small_thief.png', \
+                    'fat' : 'media/imgs/fat_thief.png'}
+        
+        self.thief_type = random.choice(thiefs)
+        self.thief = Sprite(self.thief_type[1])
         self.thief.position = 100, 190
         self.add(self.thief)
         self.fall()
 
     def fall(self):
-        action = CustomJump((500,0), 100, 10, 7)
+        action = CustomJump( self.thief_type[0] )
         self.thief.do(action)
         pyglet.resource.media('media/sounds/yupi.mp3').play()
 

@@ -6,12 +6,25 @@ import math
 
 class CustomJump(IntervalAction):
 
-    def init(self, position, height, jumps, duration):
+    def init(self, thief_type=None):
 
-        self.position = position
-        self.height = height
-        self.duration = duration
-        self.jumps = jumps
+        if thief_type == 'fat':
+            self.position = (500, 0)
+            self.height = 100
+            self.duration = 10
+            self.jumps = 7
+
+        elif thief_type == 'small':
+            self.position = (500, 0)
+            self.height = 100
+            self.duration = 10
+            self.jumps = 7
+
+        elif thief_type == 'tall':
+            self.position = (500, 0)
+            self.height = 100
+            self.duration = 10
+            self.jumps = 7
 
     def start( self ):
         self.start_position = self.target.position
@@ -22,6 +35,7 @@ class CustomJump(IntervalAction):
         y = int(y+self.delta[1] * t)
         x = self.delta[0] * t
         self.target.position = self.start_position + Point2(x,y)
+        print self.target.position, ':', director.scene.catcher.position
 
     def __reversed__(self):
         return CustomJump( (-self.position[0],-self.position[1]), self.height, self.jumps, self.duration)
