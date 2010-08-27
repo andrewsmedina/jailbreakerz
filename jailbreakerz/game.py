@@ -1,5 +1,3 @@
-import random
-import cocos
 from cocos.sprite import *
 from cocos.director import director
 from cocos.layer import Layer
@@ -10,22 +8,50 @@ from cocos.sprite import *
 from cocos.menu import *
 from cocos.text import *
 from pyglet import font
-from actions import *
-import pyglet
 
-class Game(Layer):
+from pyglet.window import key
+
+from actions import *
+
+import score
+import pyglet
+import random
+import cocos
+
+class Game(Scene):
+
+    is_event_handler = True
 
     def __init__(self):
         super(Game, self).__init__()
-        self.load_sprites()
 
-    def load_sprites(self):
+        score.score_points = 100
+
+        self.load_scenario()
+        self.load_catcher()
+
+        self.keys = key.KeyStateHandler()
+        director.window.push_handlers(self.keys)
+
+        self.schedule_interval(self.thiefs_builder, 1)
+
+    def thiefs_builder(self, dt):
+        self.add(FallingThief())
+
+    def load_catcher(self):
+        self.catcher = Sprite('media/imgs/catcher.png')
+        self.catcher.position = 300,100
+        self.catcher.mov_rate = 20
+        self.catcher.do( CustomMove(300, 500) )
+        self.add(self.catcher)
+
+    def load_scenario(self):
         self.prison = Sprite('media/imgs/prison.png')
         self.prison.position = 100,170
         self.add(self.prison)
 
         self.kombi = Sprite('media/imgs/kombi.png')
-        self.kombi.position = 750,120
+        self.kombi.position = 790,90
         self.add(self.kombi)
 
 class FallingThief(Layer):
@@ -33,36 +59,22 @@ class FallingThief(Layer):
     def __init__(self, *args, **kwargs):
         super(FallingThief, self).__init__()
 
-        thief_sprites = ['media/imgs/tall_thief.png', 'media/imgs/small_thief.png', 'media/imgs/fat_thief.png']
-        self.thief = Sprite(random.sample(thief_sprites, 1)[0])
+        thiefs = {'tall': 'media/imgs/tall_thief.png', \
+                    'small' : 'media/imgs/small_thief.png', \
+                    'fat' : 'media/imgs/fat_thief.png'}
+        
+        self.thief_type = random.choice(thiefs.items())
+        self.thief = Sprite(self.thief_type[1])
+        self.thief.alive = True
         self.thief.position = 100, 190
         self.add(self.thief)
         self.fall()
 
     def fall(self):
-        action = CustomJump((500,0), 100, 10, 7)
-
+        action = CustomJump( self.thief_type[0] )
         self.thief.do(action)
-
-class Catcher(Layer):
-
-    is_event_handler = True
-
-    MOVEMENT_RATE = 50  # Constant used to move sprite
-
-    def __init__(self, *args, **kwargs):
-        super(Catcher, self).__init__()
-        self.catcher = Sprite('media/imgs/catcher.png')
-        self.catcher.position = 300,100
-        self.add(self.catcher)
-
-    def on_key_press(self, key, modifiers):
-        if key == pyglet.window.key.LEFT:
-            self.catcher.position = self.catcher.position[0] - self.MOVEMENT_RATE, self.catcher.position[1]
-        elif key == pyglet.window.key.RIGHT:
-            self.catcher.position = self.catcher.position[0] + self.MOVEMENT_RATE, self.catcher.position[1]
+        pyglet.resource.media('media/sounds/yupi.mp3').play()
 
 if __name__ == '__main__':
     director.init(resizable=False, width=800, height=600)
-    scene = Scene(Game(), Catcher(), FallingThief() )
-    director.run(scene)
+    director.run(Game())

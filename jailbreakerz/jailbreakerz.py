@@ -10,8 +10,11 @@ from cocos.menu import *
 from cocos.text import *
 from pyglet import font
 
+from score import ScoreLayer
+
 import pyglet
 
+import sound
 import credits
 import game
 
@@ -93,10 +96,14 @@ class MainMenu(Menu):
 
         self.create_menu(items)
 
+        sound.player.queue(pyglet.resource.media('media/sounds/fundogame.mp3'))
+        sound.player.eos_action = 'loop'
+        sound.player.play()
+
     def on_start(self):
-        game_scene = Scene(game.Game(), game.Catcher(), \
-                            game.FallingThief())
-        director.push( FlipAngular3DTransition(game_scene, 1.5)  )
+        game_scene = game.Game()
+        game_scene.add(ScoreLayer(), z=2)
+        director.push( game_scene  )
 
     def on_credits(self):
         scene = Scene(Background())
