@@ -12,14 +12,13 @@ import math
 def collide(a, b):
     distance = math.sqrt((a.x-b.x)**2 + (a.y-b.y)**2)
     return distance < (a.width/2 + b.width/2)
-
-class ThiefJump(JumpBy):
     
-    def __init__(self, *args, **kwargs):
-        super(ThiefJump, self).__init__(*args, **kwargs)
-        self.freedom = False
-        self.is_dead = False
-        
+def collide_on_trampoline(a, b):
+    x_center_a = a.x + (a.width/2)
+    return a.y < 150 and x_center_a > b.x and x_center_a < b.x + b.width
+            
+class CustomJump(IntervalAction):
+
     def freedom_checking(self):
         if not self.freedom and collide(self.target, director.scene.kombi):
             score.score_points += 10
@@ -31,20 +30,21 @@ class ThiefJump(JumpBy):
             self.is_dead = True
     
     def saved(self):
-        if not self.freedom and collide(self.target, director.scene.catcher):
-            pass
-            #self.stop()
+        if not self.freedom and collide_on_trampoline(self.target, director.scene.catcher):
+            return True
         
-    def step(self, dt):
-        super(ThiefJump, self).step(dt)
-        self.saved()
-        self.dead_checking()
-        self.freedom_checking()
-
-            
-class CustomJump(IntervalAction):
+        return False
+        
+        #if not self.freedom and collide(self.target, director.scene.catcher):
+        #    return True
+        
+        #return False
+            #self.stop()
 
     def init(self, thief_type=None):
+        
+        self.freedom = False
+        self.is_dead = False
 
         if thief_type == 'fat':
             self.position = (500, 0)
@@ -63,24 +63,47 @@ class CustomJump(IntervalAction):
             self.height = 100
             self.duration = 15
             self.jumps = 3
+            
+        self.jumps = 1
+        self.height = 200
+        self.duration = 3
+        self.position = (200, -250)
+
 
     def start( self ):
         self.start_position = self.target.position
         self.delta = Vector2(*self.position)
+        
+    def done(self):
+        return False
 
     def update(self, t):
+        self.dead_checking()
+        self.freedom_checking()
+            
+        
+        if self.saved():
+            pass
+            # inverte jump ou rejump
 
-        self.target.alive = self.collide( self.target.position, \
-                                director.scene.catcher.position )
+        y = self.height * abs( math.sin( t * math.pi * self.jumps ) )
+        y = int(y+self.delta[1] * t)
+        x = self.delta[0] * t
+        self.target.position = self.start_position + Point2(x,y)
 
-        if self.target.alive:
-            y = self.height * abs( math.sin( t * math.pi * self.jumps ) )
-            y = int(y+self.delta[1] * t)
-            x = self.delta[0] * t
-            self.target.position = self.start_position + Point2(x,y)
+            
 
-        else:
-            self.target_position = self.target_position[0], self.target_position[1]-10
+        # self.target.alive = self.collide( self.target.position, \
+        #                         director.scene.catcher.position )
+        # 
+        # if self.target.alive:
+        #     y = self.height * abs( math.sin( t * math.pi * self.jumps ) )
+        #     y = int(y+self.delta[1] * t)
+        #     x = self.delta[0] * t
+        #     self.target.position = self.start_position + Point2(x,y)
+        # 
+        # else:
+        #     self.target_position = self.target_position[0], self.target_position[1]-10
 
     def __reversed__(self):
         return CustomJump( (-self.position[0],-self.position[1]), self.height, self.jumps, self.duration)
@@ -94,11 +117,6 @@ class CustomJump(IntervalAction):
 
     def done(self):
         return self._elapsed >= self.duration
-
-    def collide(self, thief_pos, catcher_pos):
-        print 'Thief pos: ', thief_pos
-        print 'Catcherpos: ', catcher_pos
-        return True
 
 class CustomMove(Move):
 

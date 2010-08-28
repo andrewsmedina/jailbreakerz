@@ -18,6 +18,7 @@ import pyglet
 import random
 import cocos
 
+
 class Game(Scene):
 
     is_event_handler = True
@@ -46,6 +47,7 @@ class Game(Scene):
         self.catcher.do( CustomMove(300, 500) )
         self.add(self.catcher)
 
+
     def load_scenario(self):
         self.prison = Sprite('media/imgs/prison.png')
         self.prison.position = 100,170
@@ -72,10 +74,10 @@ class FallingThief(Layer):
         self.fall()
 
     def fall(self):
-        #action = CustomJump( self.thief_type[0] )
-        #self.thief.do(action)
-        self.thief.do(ThiefJump((200,-250), 200, 1, 3))
-        pyglet.resource.media('media/sounds/yupi.mp3').play()
+        action = CustomJump( self.thief_type[0] )
+        self.thief.do(action)
+        #self.thief.do(ThiefJump((200,-250), 200, 1, 3))
+        #pyglet.resource.media('media/sounds/yupi.mp3').play()
 
 if __name__ == '__main__':
     director.init(resizable=False, width=800, height=600)

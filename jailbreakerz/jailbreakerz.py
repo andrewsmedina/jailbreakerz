@@ -98,7 +98,7 @@ class MainMenu(Menu):
 
         sound.player.queue(pyglet.resource.media('media/sounds/fundogame.mp3'))
         sound.player.eos_action = 'loop'
-        sound.player.play()
+        #sound.player.play()
 
     def on_start(self):
         game_scene = game.Game()
