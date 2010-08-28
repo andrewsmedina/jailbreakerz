@@ -33,7 +33,8 @@ class Game(Scene):
         self.keys = key.KeyStateHandler()
         director.window.push_handlers(self.keys)
 
-        self.schedule_interval(self.thiefs_builder, 1)
+        #self.schedule_interval(self.thiefs_builder, 1)
+        self.thiefs_builder(1)
 
     def thiefs_builder(self, dt):
         self.add(FallingThief())
@@ -71,8 +72,9 @@ class FallingThief(Layer):
         self.fall()
 
     def fall(self):
-        action = CustomJump( self.thief_type[0] )
-        self.thief.do(action)
+        #action = CustomJump( self.thief_type[0] )
+        #self.thief.do(action)
+        self.thief.do(ThiefJump((200,-250), 200, 1, 3))
         pyglet.resource.media('media/sounds/yupi.mp3').play()
 
 if __name__ == '__main__':

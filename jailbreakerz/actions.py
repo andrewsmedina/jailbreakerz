@@ -1,9 +1,47 @@
 from cocos.euclid import *
 from cocos.actions import *
 from cocos.director import director
+
 from pyglet.window import key
+
+from message import MessageScene
+
+import score
 import math
 
+def collide(a, b):
+    distance = math.sqrt((a.x-b.x)**2 + (a.y-b.y)**2)
+    return distance < (a.width/2 + b.width/2)
+
+class ThiefJump(JumpBy):
+    
+    def __init__(self, *args, **kwargs):
+        super(ThiefJump, self).__init__(*args, **kwargs)
+        self.freedom = False
+        self.is_dead = False
+        
+    def freedom_checking(self):
+        if not self.freedom and collide(self.target, director.scene.kombi):
+            score.score_points += 10
+            self.freedom = True
+    
+    def dead_checking(self):
+        if not self.freedom and not self.is_dead and self.target.y < -30:
+            director.replace(MessageScene('GAME OVER'))
+            self.is_dead = True
+    
+    def saved(self):
+        if not self.freedom and collide(self.target, director.scene.catcher):
+            pass
+            #self.stop()
+        
+    def step(self, dt):
+        super(ThiefJump, self).step(dt)
+        self.saved()
+        self.dead_checking()
+        self.freedom_checking()
+
+            
 class CustomJump(IntervalAction):
 
     def init(self, thief_type=None):
