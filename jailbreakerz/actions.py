@@ -43,6 +43,8 @@ class CustomJump(IntervalAction):
 
     def init(self, thief_type=None):
         
+        self.thief_type = thief_type
+        
         self.freedom = False
         self.is_dead = False
 
@@ -74,21 +76,20 @@ class CustomJump(IntervalAction):
         self.start_position = self.target.position
         self.delta = Vector2(*self.position)
         
-    def done(self):
-        return False
-
     def update(self, t):
         self.dead_checking()
         self.freedom_checking()
             
         
         if self.saved():
-            pass
+            print 'SAVED'
+            #self.target.do(CustomJump(self.thief_type))
             # inverte jump ou rejump
 
         y = self.height * abs( math.sin( t * math.pi * self.jumps ) )
         y = int(y+self.delta[1] * t)
         x = self.delta[0] * t
+        
         self.target.position = self.start_position + Point2(x,y)
 
             
@@ -107,16 +108,16 @@ class CustomJump(IntervalAction):
 
     def __reversed__(self):
         return CustomJump( (-self.position[0],-self.position[1]), self.height, self.jumps, self.duration)
-
-    def step(self, dt):
-        self._elapsed += dt
-        try:
-            self.update( min(1, self._elapsed/self.duration ) )
-        except ZeroDivisionError:
-            self.update(1.0)
-
-    def done(self):
-        return self._elapsed >= self.duration
+    # 
+    # def step(self, dt):
+    #     self._elapsed += dt
+    #     try:
+    #         self.update( min(1, self._elapsed/self.duration ) )
+    #     except ZeroDivisionError:
+    #         self.update(1.0)
+    # 
+    # def done(self):
+    #     return self._elapsed >= self.duration
 
 class CustomMove(Move):
 
