@@ -83,7 +83,8 @@ class CustomJump(IntervalAction):
         
         if self.saved():
             print 'SAVED'
-            #self.target.do(CustomJump(self.thief_type))
+            self.target.actions.remove(self)
+            self.target.do(CustomJump(self.thief_type))
             # inverte jump ou rejump
 
         y = self.height * abs( math.sin( t * math.pi * self.jumps ) )
