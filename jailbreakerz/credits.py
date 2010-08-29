@@ -11,7 +11,7 @@ DEVELOPERS = u"""
 <font size="+1" color="white" face="Arial"><b>Developers</b></font>
 <br><font color="white" face="Arial">Andrews Medina <tt>&lt;andrewsmedina@gmail.com&gt;</tt></font>
 <br><font color="white" face="Arial">Bernardo Heynemann <tt>&lt;heynemann@gmail.com&gt;</tt></font>
-<br><font color="white" face="Arial">Diógenes <tt>&lt;diofeher@gmail.com&gt;</tt></font>
+<br><font color="white" face="Arial">Diógenes Fernandes<tt>&lt;diofeher@gmail.com&gt;</tt></font>
 <br><font color="white" face="Arial">Enrico Batista da Luz <tt>&lt;ricobl@gmail.com&gt;</tt></font>
 <br><font color="white" face="Arial">Flávio Ribeiro <tt>&lt;email@flavioribeiro.com&gt;</tt></font>
 <br><font color="white" face="Arial">Igor Sobreira <tt>&lt;igor@igorsobreira.com&gt;</tt></font>

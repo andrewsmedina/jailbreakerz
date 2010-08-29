@@ -34,8 +34,8 @@ class Game(Scene):
         self.keys = key.KeyStateHandler()
         director.window.push_handlers(self.keys)
 
-        #self.schedule_interval(self.thiefs_builder, 1)
         self.thiefs_builder(1)
+        self.schedule_interval(self.thiefs_builder, 10)
 
     def thiefs_builder(self, dt):
         self.add(FallingThief())
