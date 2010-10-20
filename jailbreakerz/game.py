@@ -90,8 +90,6 @@ class FallingThief(Layer):
     def fall(self):
         action = CustomJump( self.thief_type[0] )
         self.thief.do(action)
-        #self.thief.do(ThiefJump((200,-250), 200, 1, 3))
-        #pyglet.resource.media('media/sounds/yupi.mp3').play()
 
 if __name__ == '__main__':
     director.init(resizable=False, width=800, height=600)

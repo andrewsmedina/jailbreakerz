@@ -14,8 +14,8 @@ def collide(a, b):
     return distance < (a.width/2 + b.width/2)
     
 def collide_on_trampoline(a, b):
-    x_center_a = a.x + (a.width/2)
-    return a.y < 150 and x_center_a > b.x and x_center_a < b.x + b.width
+    x_center_a = a.x + (a.width)
+    return a.y < 200 and x_center_a > b.x and x_center_a < b.x + b.width
             
 class CustomJump(IntervalAction):
 
@@ -25,7 +25,7 @@ class CustomJump(IntervalAction):
             self.freedom = True
     
     def dead_checking(self):
-        if not self.freedom and not self.is_dead and self.target.y < -30:
+        if not self.freedom and not self.is_dead and self.target.y < 100:
             director.replace(MessageScene('GAME OVER'))
             self.is_dead = True
     
