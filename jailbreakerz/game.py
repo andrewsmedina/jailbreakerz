@@ -19,6 +19,17 @@ import random
 import cocos
 
 
+class Background(Layer):
+    def __init__(self):
+        super(Background, self).__init__()
+        self.img = pyglet.resource.image('media/imgs/background.png')
+
+    def draw(self):
+        glPushMatrix()
+        self.transform()
+        self.img.blit(0,0)
+        glPopMatrix()
+
 class Game(Scene):
 
     is_event_handler = True
@@ -49,6 +60,11 @@ class Game(Scene):
 
 
     def load_scenario(self):
+        self.background = Background()
+#        self.background = Sprite('media/imgs/background.png')
+#        self.background.position = 0,0
+        self.add(self.background)
+
         self.prison = Sprite('media/imgs/prison.png')
         self.prison.position = 100,170
         self.add(self.prison)
