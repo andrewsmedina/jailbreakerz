@@ -64,7 +64,7 @@ class Game(Scene):
         self.add(self.background)
 
         self.prison = Sprite('media/imgs/prison.png')
-        self.prison.position = 100,170
+        self.prison.position = 100,185
         self.add(self.prison)
 
         self.kombi = Sprite('media/imgs/kombi.png')
