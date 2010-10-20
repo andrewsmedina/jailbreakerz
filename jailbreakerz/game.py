@@ -61,8 +61,6 @@ class Game(Scene):
 
     def load_scenario(self):
         self.background = Background()
-#        self.background = Sprite('media/imgs/background.png')
-#        self.background.position = 0,0
         self.add(self.background)
 
         self.prison = Sprite('media/imgs/prison.png')
@@ -85,7 +83,7 @@ class FallingThief(Layer):
         self.thief_type = random.choice(thiefs.items())
         self.thief = Sprite(self.thief_type[1])
         self.thief.alive = True
-        self.thief.position = 100, 190
+        self.thief.position = 100, 340
         self.add(self.thief)
         self.fall()
 
