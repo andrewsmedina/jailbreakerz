@@ -16,6 +16,10 @@ DEVELOPERS = u"""
 <br><font color="white" face="Arial">Flávio Ribeiro <tt>&lt;email@flavioribeiro.com&gt;</tt></font>
 <br><font color="white" face="Arial">Igor Sobreira <tt>&lt;igor@igorsobreira.com&gt;</tt></font>
 <br><font color="white" face="Arial">Osvaldo Santana Neto <tt>&lt;osantana@gmail.com&gt;</tt></font>
+<br><br>
+<font size="+1" color="white" face="Arial"><b>Designer</b></font>
+<br><font color="white" face="Arial">Diego Costa <tt>&lt;dgrcosta@gmail.com&gt;</tt></font>
+
 <p>
 <font size="+1" color="white" face="Arial"><b>Background</b></font><br>
 <font color="white" face="Arial">Ashour Rehana <tt>http://flickr.com/photos/arehana</tt></font>
