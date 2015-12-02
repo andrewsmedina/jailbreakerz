@@ -8,18 +8,18 @@
 1. Clone it:
 
 ```sh
-$ git clone git@github.com:andrewsmedina/pyweek2010.git
+$ git clone git@github.com:andrewsmedina/jailbreakerz.git
 ```
 
 2. Then go to the project's folder:
 
 ```sh
-$ cd pyweek2010
+$ cd jailbreakerz
 ```
 
 3. And finally run:
 ```shell
-$ pip install -r pip_requirements.txt
+$ pip install -r requirements.txt
 ```
 
 ## Play!
@@ -34,7 +34,3 @@ $ python jailbreakerz/game.py
 3. Commit your changes: `git commit -m 'Add some awesome feature'`
 4. Push to the branch: `git push origin my-awesome-new-feature`
 5. Submit a pull request :]
-
-## License
-
-This code is under [Apache License](https://github.com/flavioribeiro/video-thumbnail-generator/blob/master/LICENSE).
