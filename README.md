@@ -24,7 +24,7 @@ $ pip install -r requirements.txt
 
 ## Play!
 ```shell
-$ python jailbreakerz/game.py
+$ python jailbreakerz/jailbreakerz.py
 ```
 
 ## Contributing
