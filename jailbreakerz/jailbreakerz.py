@@ -14,7 +14,6 @@ from score import ScoreLayer
 
 import pyglet
 
-import sound
 import credits
 import game
 
@@ -95,10 +94,6 @@ class MainMenu(Menu):
         items.append(MenuItem('Quit', self.on_quit))
 
         self.create_menu(items)
-
-        sound.player.queue(pyglet.resource.media('media/sounds/fundogame.mp3'))
-        sound.player.eos_action = 'loop'
-        #sound.player.play()
 
     def on_start(self):
         game_scene = game.Game()
